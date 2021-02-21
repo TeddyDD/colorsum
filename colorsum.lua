@@ -35,10 +35,13 @@ local function isTTY(fd)
     return (ok and exit == "exit") and signal == 0 or false
 end
 
+local printfn
+if not isTTY() then
+    printfn = print
+else
+    printfn = cprint
+end
+
 for line in io.stdin:lines() do
-    if not isTTY() then
-        print(line)
-    else
-        cprint(line)
-    end
+    printfn(line)
 end
