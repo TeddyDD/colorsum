@@ -4,6 +4,8 @@ Inspired by this task on Rosetta Code:
 
 https://rosettacode.org/wiki/Checksumcolor
 
+![screenshot showing usage of colorsum](screen.png)
+
 ## Usage
 
 ```sh
