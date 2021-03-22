@@ -1,5 +1,3 @@
-#!/usr/bin/env lua
-
 --[[
     inspired by
     https://rosettacode.org/wiki/Checksumcolor
@@ -7,12 +5,12 @@
 
 local type printFunction = function(string)
 
-function lerp(a:number, b:number, v:number): number
+local function lerp(a:number, b:number, v:number): number
     return a + (b - a) * v
 end
 
-local cprint = (function():printFunction
-    local c = {}
+local function cprint(): printFunction
+    local c: {string} = {}
     for i=31,37 do table.insert(c,i) end
     local fmt = '\27[%sm%s\27[0m'
     return function(line:string)
@@ -29,7 +27,7 @@ local cprint = (function():printFunction
         end
         io.write(string.format("%s\n", line:sub(idx)))
     end
-end)()
+end
 
 local function isTTY(fd: number): boolean
     fd = tonumber(fd) or 1
@@ -41,7 +39,7 @@ local printfn: printFunction
 if not isTTY() then
     printfn = print as printFunction -- safe cast from function(any)
 else
-    printfn = cprint
+    printfn = cprint()
 end
 
 for line in io.stdin:lines() do
