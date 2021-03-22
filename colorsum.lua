@@ -18,7 +18,7 @@ local cprint = (function()
         if not ok then print(line) return end
         local idx = 1
         for n in sum:gmatch("%x%x%x") do
-            num = tonumber("0x"..n)
+            local num = tonumber("0x"..n)
             io.write(fmt:format(
                 c[math.floor(lerp(1,#c,num/4096) + 0.5)],
                 n
