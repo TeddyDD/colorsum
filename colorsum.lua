@@ -5,11 +5,11 @@
     https://rosettacode.org/wiki/Checksumcolor
 ]]
 
-function lerp(a, b, v)
+local function lerp(a, b, v)
     return a + (b - a) * v
 end
 
-local cprint = (function()
+local function cprint()
     local c = {}
     for i=31,37 do table.insert(c,i) end
     local fmt = '\27[%sm%s\27[0m'
@@ -27,7 +27,7 @@ local cprint = (function()
         end
         io.write(string.format("%s\n", line:sub(idx)))
     end
-end)()
+end
 
 local function isTTY(fd)
     fd = tonumber(fd) or 1
@@ -39,7 +39,7 @@ local printfn
 if not isTTY() then
     printfn = print
 else
-    printfn = cprint
+    printfn = cprint()
 end
 
 for line in io.stdin:lines() do
